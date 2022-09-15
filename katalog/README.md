@@ -8,7 +8,7 @@ https://pbp-tugas-2-dito.herokuapp.com/katalog/
 ![Bagan](https://user-images.githubusercontent.com/112608897/190315700-375282c1-ce6c-4505-ab9e-6574a991b498.jpg)
 
 
-## Why We Should use Virtuel Environment?
+## Why We Should use Virtual Environment?
 
 Kita menggunakan Virtual Environment pada setiap project agar masing-masing dari project tersebut bersifat independen. Independen pada hal ini artinya ketika kita
 melakukan atau menginstall sesuatu pada satu project, perubahan ini tidak akan mengganggu project lainnya. Tentu jika tidak menggunakan Virtual Environment, maka
