@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.movie",
+        "pk": 1,
+        "fields": {
+            "is_watched": true,
+            "title": "Interstellar",
+            "rating": 10,
+            "release_date": "2014-11-06",
+            "review": "Interstellar is not only a grand space adventure worthy of the big screen, it's also a powerfully emotional story about the bond between a father and daughter, and how that love can drive one to attempt the impossible."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 2,
+        "fields": {
+            "is_watched": true,
+            "title": "The Prestige",
+            "rating": 10,
+            "release_date": "2006-11-08",
+            "review": "Just when viewers think they've figured things out, that's when the exquisite diversionary tactics really kick in."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 3,
+        "fields": {
+            "is_watched": true,
+            "title": "Batman: The Dark Knight",
+            "rating": 10,
+            "release_date": "2008-07-18",
+            "review": "A masterpiece within or outside the superhero & comic book genre it explores. Heath Ledger delivers one of the most iconic performances in film history."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 4,
+        "fields": {
+            "is_watched": true,
+            "title": "The Devil All The Time",
+            "rating": 8.31,
+            "release_date": "2020-09-16",
+            "review": "The Devil All the Time is soaked in blood and dirt, holy water and tears, and there's not a lot of it that will wash away."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 5,
+        "fields": {
+            "is_watched": false,
+            "title": "Memento",
+            "rating": 8.52,
+            "release_date": "2000-09-05",
+            "review": "Memento takes us on a mental trip of recovery, revenge, and remembering."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 6,
+        "fields": {
+            "is_watched": false,
+            "title": "The Godfather",
+            "rating": 10,
+            "release_date": "1972-03-15",
+            "review": "An engrossing metaphor for American capitalism, watching the film on the big screen emphasises the majesty of Coppolas work."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 7,
+        "fields": {
+            "is_watched": true,
+            "title": "Avengers: Infinity War",
+            "rating": 9.25,
+            "release_date": "2018-04-27",
+            "review": "Infinity War is all about balance, in many different respects. Balance and tone, both of which, for a film with such ambition and size, are remarkable in how well they are executed. It is worth 10 years of waiting."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 8,
+        "fields": {
+            "is_watched": true,
+            "title": "Moonknight",
+            "rating": 9.11,
+            "release_date": "2022-03-30",
+            "review": "After such a fun season that deftly mixed superhero heroics with genuine psychological depth, we cant wait to see whatever the characters do next. Its hard not to be over the moon."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 9,
+        "fields": {
+            "is_watched": false,
+            "title": "Forrest Gump",
+            "rating": 8.56,
+            "release_date": "1994-07-06",
+            "review": "Contrasting Forrest's unassuming innocence with the upheavals and rancor of the times, the film is a wisely goofy commentary on the stupidity of smartness."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 10,
+        "fields": {
+            "is_watched": true,
+            "title": "Arrival",
+            "rating": 9.23,
+            "release_date": "2016-11-11",
+            "review": "Both cerebral and achingly emotional, Arrival sustains a message about hope and understanding for a better humanity that audiences may need right now."
+         }
+    }
+]
