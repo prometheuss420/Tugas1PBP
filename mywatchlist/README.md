@@ -1,6 +1,6 @@
 # Link Heroku App Tugas 3 PBP
 ```shell
-https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/
+https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/html
 https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/xml
 https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/json
 ```
@@ -177,6 +177,24 @@ HEROKU_APP_NAME: pbp-tugas-2-dito
 ```
 
 Setelah semua Secrets berhasil ditambahkan, kita dapat melakukan deployment melalui menu Actions pada repository yang akan dideploy
+
+## Postman Accessing
+
+```shell
+https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/html
+```
+![image](https://user-images.githubusercontent.com/112608897/191656282-68974e1c-73cd-4cf9-8713-74d1a38fdcea.png)
+
+```shell
+https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/json
+```
+![image](https://user-images.githubusercontent.com/112608897/191656310-0c9f571c-a715-46b9-b2c9-3d046e364ebb.png)
+
+```shell
+https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/xml
+```
+<img width="665" alt="image" src="https://user-images.githubusercontent.com/112608897/191656396-2aab0133-b1e5-4ca9-9f8e-16d1d5f5ea3d.png">
+
 
 
 
