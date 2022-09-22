@@ -7,93 +7,163 @@ https://pbp-tugas-2-dito.herokuapp.com/mywatchlist/json
 
 ## The Difference Between JSON, XML, and HTML
 
-Kita menggunakan Virtual Environment pada setiap project agar masing-masing dari project tersebut bersifat independen. Independen pada hal ini artinya ketika kita
-melakukan atau menginstall sesuatu pada satu project, perubahan ini tidak akan mengganggu project lainnya. Tentu jika tidak menggunakan Virtual Environment, maka
-bisa saja terjadi perubahan pada project yang lain tanpa kita inginkan
+JSON dan XML merupakan format yang digunakan untuk menyimpan dan membaca sebuah data. Namun perbedaan mencolok di antara keduanya ialah tentang bagaimana mereka menyimpan sebuah data. JSON memiliki teknik penyimpanan yang efisien dibanding XML. Namun, format data dalam bentuk JSON cenderung sulit dipahami oleh manusia. Sebaliknya, XML tidak memiliki teknik penyimpanan seefisien JSON. Namun, XML justru lebih mudah dipahami oleh manusia karena menyimpan data secara terstruktur
+
+## Why We Need Data Delivery?
+
+Data delivery sangat diperlukan dan berguna dalam pengembangan suatu platform terlebih jika platform tersebut berskala besar. Karena data delivery merupakan sebuah alur birokrasi penyimpanan dan pembacaan suatu data dengan format tertentu yang ditujukan untuk dapat mengakses data tersebut sewaktu-waktu. Jika data tidak diformat dan distruktur dengan birokrasi data delivery, maka nantinya hal tersebut akan menimbulkan sebuah kesulitan untuk mengakses sebuah data pada platform
 
 ## Step by Step Explanation
 
-Menambahkan potongan kode berikut ke file views.py yang ada di folder katalog. Hal ini bertujuan untuk mengambil semua data yang telah di load dari fixtures ke
-models serta menambahkan beberapa field data tambahan yang kemudian akan di render ke dalam sebuah HTML
+Membuat sebuah app baru dengan nama mywatchlist dengan menjalankan perintah
 
 ```shell
-from django.shortcuts import render
-from katalog.models import CatalogItem
+python manage.py startapp mywatchlist
+```
 
-def show_katalog(request):
-    data_barang_katalog = CatalogItem.objects.all()
-    context = {
-    'list_barang': data_barang_katalog,
-    'nama': 'Dito Syahputra',
-    'npm' : '2106638053',
+Menambahkan path mywatchlist pada urls.py project_django dengan kode berikut agar mywatchlist dapat di akses pathnya.
+
+```shell
+path('mywatchlist/', include('mywatchlist.urls'))
+```
+
+Membuat sebuah model pada app mywatchlist dengan nama class Movie beserta attributnya seperti berikut
+
+```shell
+class Movie(models.Model):
+    is_watched = models.BooleanField()
+    title = models.TextField()
+    rating = models.FloatField()
+    release_date = models.DateField()
+    review = models.TextField()
+    
+```
+
+Menambahkan 10 buah data dengan nama file initial_mywatchlist_data.json yang berisikan:
+
+```shell
+[
+    {
+        "model": "mywatchlist.movie",
+        "pk": 1,
+        "fields": {
+            "is_watched": true,
+            "title": "Interstellar",
+            "rating": 10,
+            "release_date": "2014-11-06",
+            "review": "Interstellar is not only a grand space adventure worthy of the big screen, it's also a powerfully emotional story about the bond between a father and daughter, and how that love can drive one to attempt the impossible."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 2,
+        "fields": {
+            "is_watched": true,
+            "title": "The Prestige",
+            "rating": 10,
+            "release_date": "2006-11-08",
+            "review": "Just when viewers think they've figured things out, that's when the exquisite diversionary tactics really kick in."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 3,
+        "fields": {
+            "is_watched": true,
+            "title": "Batman: The Dark Knight",
+            "rating": 10,
+            "release_date": "2008-07-18",
+            "review": "A masterpiece within or outside the superhero & comic book genre it explores. Heath Ledger delivers one of the most iconic performances in film history."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 4,
+        "fields": {
+            "is_watched": true,
+            "title": "The Devil All The Time",
+            "rating": 8.31,
+            "release_date": "2020-09-16",
+            "review": "The Devil All the Time is soaked in blood and dirt, holy water and tears, and there's not a lot of it that will wash away."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 5,
+        "fields": {
+            "is_watched": false,
+            "title": "Memento",
+            "rating": 8.52,
+            "release_date": "2000-09-05",
+            "review": "Memento takes us on a mental trip of recovery, revenge, and remembering."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 6,
+        "fields": {
+            "is_watched": false,
+            "title": "The Godfather",
+            "rating": 10,
+            "release_date": "1972-03-15",
+            "review": "An engrossing metaphor for American capitalism, watching the film on the big screen emphasises the majesty of Coppolas work."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 7,
+        "fields": {
+            "is_watched": true,
+            "title": "Avengers: Infinity War",
+            "rating": 9.25,
+            "release_date": "2018-04-27",
+            "review": "Infinity War is all about balance, in many different respects. Balance and tone, both of which, for a film with such ambition and size, are remarkable in how well they are executed. It is worth 10 years of waiting."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 8,
+        "fields": {
+            "is_watched": true,
+            "title": "Moonknight",
+            "rating": 9.11,
+            "release_date": "2022-03-30",
+            "review": "After such a fun season that deftly mixed superhero heroics with genuine psychological depth, we cant wait to see whatever the characters do next. Its hard not to be over the moon."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 9,
+        "fields": {
+            "is_watched": false,
+            "title": "Forrest Gump",
+            "rating": 8.56,
+            "release_date": "1994-07-06",
+            "review": "Contrasting Forrest's unassuming innocence with the upheavals and rancor of the times, the film is a wisely goofy commentary on the stupidity of smartness."
+        }
+    },
+    {
+        "model": "mywatchlist.movie",
+        "pk": 10,
+        "fields": {
+            "is_watched": true,
+            "title": "Arrival",
+            "rating": 9.23,
+            "release_date": "2016-11-11",
+            "review": "Both cerebral and achingly emotional, Arrival sustains a message about hope and understanding for a better humanity that audiences may need right now."
+         }
     }
-    return render(request, "katalog.html",context)
-```
-
-Menambahkan potongan kode berikut ini ke dalam urls.py yang ada pada folder project_django agar path baru dari katalog yang kita buat dapat di akses oleh browser
-
-```shell
-path('katalog/', include('katalog.urls'))
-```
-
-Kemudian menambahkan potongan kode berikut ini pada urls.py yang ada di folder katalog. Hal ini ditujukan untuk menampilkan halaman yang kita buat ketika membuka
-path /katalog di browser
-
-
-```shell
-from django.urls import path
-from katalog.views import show_katalog
-
-app_name = 'katalog'
-
-urlpatterns = [
-    path('', show_katalog, name='show_katalog'),
 ]
 ```
 
-Selanjutnya membuat file katalog.html pada folder katalog.templates untuk menampilkan data yang kita punya dalam sajian HTML yang dapat dilihat oleh web browser
-masing-masing. File tersebut akan berisi kode sebagai berikut.
-
+Melakukan routing dengan menambahkan potongan kode berikut pada urls.py yang ada di mywatchlist.
 
 ```shell
-{% extends 'base.html' %}
-
- {% block content %}
-
-  <h1>Lab 1 Assignment PBP/PBD</h1>
-
-  <h5>Name: </h5>
-  <p>{{nama}}</p>
-
-  <h5>Student ID: </h5>
-  <p>{{npm}}</p>
-
-  <table>
-    <tr>
-      <th>Item Name</th>
-      <th>Item Price</th>
-      <th>Item Stock</th>
-      <th>Rating</th>
-      <th>Description</th>
-      <th>Item URL</th>
-    </tr>
-    {% comment %} Add the data below this line {% endcomment %}
-    {% for barang in list_barang %}
-    <tr>
-        <th>{{barang.item_name}}</th>
-        <th>{{barang.item_price}}</th>
-        <th>{{barang.item_stock}}</th>
-        <th>{{barang.rating}}</th>
-        <th>{{barang.description}}</th>
-        <th>{{barang.item_url}}</th>
-    </tr>
-{% endfor %}
-  </table>
-
- {% endblock content %}
+path('html/',show_watchlist, name='show_watchlist'),
+path('xml/',show_xml, name='show_xml'),
+path('json/',show_json, name='show_json'),
 ```
 
-Potongan kode ini menampilkan field nama, npm, dan iterasi dari seluruh object barang yang menampilkan attribut masing-masing.
 
 ## Heroku Deployment
 

@@ -19,6 +19,8 @@ def show_watchlist(request):
     }
     return render(request, "mywatchlist.html",context)
 
+
+
 def show_xml(request):
     data = Movie.objects.all()
     return HttpResponse(serializers.serialize("xml",data), content_type="application/xml")
