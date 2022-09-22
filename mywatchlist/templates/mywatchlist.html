@@ -2,62 +2,10 @@
 
  {% block content %}
 
-
-  <style>
-    body{
-      background-color: white;
-      font-family: Helvetica;
-    }
-
-    #header_utama{
-      font-size: 40px;
-      height: 25px;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    tr:hover {background-color: rgb(244, 244, 251);}
-
-    .judul{
-      background-color: rgb(244, 244, 251);
-      color: rgb(158,160,181);
-      font-size: 10px;
-      font-weight: 500;
-      height: 30px;
-    }
-
-    .data{
-      font-size: 12px;
-      font-weight: 500;
-      border-bottom: 1.5px solid rgb(244, 244, 251);
-      height: 35px;
-    }
-
-    #identity{
-      font-size: 10px;
-      text-align: center;
-      letter-spacing: 2px;
-    }
-
-    #greeting{
-      padding-left: 10px;
-      font-size: 25px;
-      font-weight: 300;
-    }
-    
-  </style>
-
-  <h1 id="header_utama">🎬My Watchlist</h1>
-  <p id="greeting">{{greet}}</p>
+  <div>
+    <h1 id="header_utama">🎬My Watchlist</h1>
+    <p id="greeting">{{greet}}</p>
+  </div> 
 
   <table>
       <tr>
