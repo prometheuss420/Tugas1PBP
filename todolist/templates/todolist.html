@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body{
+        font-family: Helvetica;
+    }
+
+    table{
+        box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);
+        width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button{
+        border-radius: 5px;
+        border: none;
+        text-decoration: none;
+        min-height: 20px;
+        min-width: 50px;
+        font-size: 10px;
+        box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .greenbutton{
+        background-color: #53d769
+    }
+
+    .greenbutton:hover{
+        background-color: #46c263;
+    }
+
+    .bluebutton{
+        background-color: #5BA4FC
+    }
+
+    .bluebutton:hover{
+        background-color: #5897EE;
+    }
+
+    .redbutton{
+        background-color:#FC3D39 ;
+    }
+
+    .redbutton:hover{
+        background-color: #E33437;
+    }
+
+
+</style>
+
+<div style="text-align: center;">
+    <p>Welcome, {{username}}! </p>
+    <button class = "redbutton"><a href="{% url 'todolist:logout' %}">Logout</a></button>
+    
+</div>
+<p id="header_utama" style="padding-left: 20px;">📃Tasks Management</p>
+
+<div style="padding-top:20px;">
+    <table>
+        <tr>
+        <th class = "judul">Title</th>
+        <th class = "judul">Description</th>
+        <th class = "judul">Date Added</th>
+        <th class = "judul">Status</th>
+        <th class = "judul">Change</th>
+        <th class = "judul">Delete</th>
+    
+        </tr>
+        {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+        {% for todo in data_tasks %}
+            <tr>
+                <th class = "data" style="width: 20%;">{{todo.title}}</th>
+                <th class = "data" style="width: 25%;">{{todo.description}}</th>
+                <th class = "data" style="width: 15%;">{{todo.date}}</th>
+                <th class = "data" style="width: 15%;">{{todo.is_finished}}</th>
+                <th class = "data" style="width: 15%;"><button class="greenbutton"><a href="{% url 'todolist:change_status' todo.id %}">Switch</a></button></th>
+                <th class = "data" style="width: 10%;"><button class = "redbutton" style="min-width: 25px"><a href="{% url 'todolist:delete_task' todo.id %}">X</a></button></th>
+    
+            </tr>
+        {% endfor %}
+    </table>
+    
+</div>
+
+<div style="padding-top: 10px; text-align: center;">
+    <button class="bluebutton" style="width: 100px;"><a href="{% url 'todolist:add_task' %}">Add New Task</a></button>
+
+</div>
+<h5 id="identity">Sesi terakhir login: {{ last_login }}</h5>
+
+{% endblock content %}
