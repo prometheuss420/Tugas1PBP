@@ -51,12 +51,17 @@
         background-color: #E33437;
     }
 
+    #userprofile{
+        font-size: 25px;
+        font-weight: 400;
+        height: 15px;
+    }
 
 </style>
 
-<div style="text-align: center;">
-    <p>Welcome, {{username}}! </p>
-    <button class = "redbutton"><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<div style="text-align: right;">
+    <p id="userprofile">Welcome, {{username}}! </p>
+    <button class = "redbutton" style="font-size:15px; height:30px; width:100px"><a href="{% url 'todolist:logout' %}">Logout</a></button>
     
 </div>
 <p id="header_utama" style="padding-left: 20px;">📃Tasks Management</p>
