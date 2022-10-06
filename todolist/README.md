@@ -255,7 +255,7 @@ Melakukan routing dengan menambahkan potongan kode berikut pada urls.py yang ada
 
 ## Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
 
-Inline CSS merupakan potongan kode CSS yang langsung ditambahkan pada tag/element terkait>. Internal CSS merupakan potongan kode CSS yang ditambahkan pada awal file HTML yang ditandai dengan <style></style>. Sedangan Eksternal CSS merupakan potongan kode CSS yang terpisah dari file html dalam berupa file .css.
+Inline CSS merupakan potongan kode CSS yang langsung ditambahkan pada tag/element terkait. Internal CSS merupakan potongan kode CSS yang ditambahkan pada awal file HTML yang ditandai dengan "style". Sedangan Eksternal CSS merupakan potongan kode CSS yang terpisah dari file html dalam berupa file .css.
 
 Inline CSS
 Kelebihan : Dapat melakukan directly styling ke element yang di tuju tanpa mempengaruhi element lain
@@ -271,7 +271,7 @@ Kekurangan : Tidak praktis karena harus berganti file jika ingin mengedit css
 
 ## Jelaskan tag HTML5 yang kamu ketahui.
 
-<head> Untuk membuat bagian header dari tampilan dokumen yang kita buat. <body> untuk mendefinisikan isi konten utama dari sebuah halaman. <div> membuat section baru untuk menaruh beberapa konten yang diinginkan. <h1>,<h2>,dst, untuk membuat header text dari yang paling besar ke kecil. <button> membuat sebuah button yang dapat merefer hal tertentu. dll
+"head" Untuk membuat bagian header dari tampilan dokumen yang kita buat. "body" untuk mendefinisikan isi konten utama dari sebuah halaman. "div" membuat section baru untuk menaruh beberapa konten yang diinginkan. "h1","h2",dst, untuk membuat header text dari yang paling besar ke kecil. "button" membuat sebuah button yang dapat merefer hal tertentu. dll
 
 ## Jelaskan tipe-tipe CSS selector yang kamu ketahui.
 
