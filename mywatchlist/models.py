@@ -7,5 +7,4 @@ class Movie(models.Model):
     title = models.TextField()
     rating = models.FloatField()
     release_date = models.DateField()
-    review = models.TextField()
-    
+    review = models.TextField()    

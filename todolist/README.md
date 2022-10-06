@@ -251,6 +251,55 @@ Melakukan routing dengan menambahkan potongan kode berikut pada urls.py yang ada
     path('change-status/<int:id>', change_status, name='change_status'),
 ```
 
+# Tugas 5
+
+## Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
+
+Inline CSS merupakan potongan kode CSS yang langsung ditambahkan pada tag/element terkait>. Internal CSS merupakan potongan kode CSS yang ditambahkan pada awal file HTML yang ditandai dengan <style></style>. Sedangan Eksternal CSS merupakan potongan kode CSS yang terpisah dari file html dalam berupa file .css.
+
+Inline CSS
+Kelebihan : Dapat melakukan directly styling ke element yang di tuju tanpa mempengaruhi element lain
+Kekurangan : Penulisan kode yang kurang rapih
+
+Internal CSS
+Kelebihan : Memudahkan suatu file untuk mendefine class-class yang sama style nya
+Kekurangan : Tidak bisa digunakan secara umum oleh file html lain
+
+Eksternal CSS
+Kelebihan : Dapat digunakan secara umum oleh semua file yang ada
+Kekurangan : Tidak praktis karena harus berganti file jika ingin mengedit css
+
+## Jelaskan tag HTML5 yang kamu ketahui.
+
+<head> Untuk membuat bagian header dari tampilan dokumen yang kita buat. <body> untuk mendefinisikan isi konten utama dari sebuah halaman. <div> membuat section baru untuk menaruh beberapa konten yang diinginkan. <h1>,<h2>,dst, untuk membuat header text dari yang paling besar ke kecil. <button> membuat sebuah button yang dapat merefer hal tertentu. dll
+
+## Jelaskan tipe-tipe CSS selector yang kamu ketahui.
+
+Secara umum, selector pada CSS dibagi menjadi 3 yaitu:
+
+Element selector
+Selector ini digunakan untuk merubah element yang sudah menjadi bawaan html secara umum yang dapat dilakukan hanya dengan elemen{}
+
+Id selector
+Selector ini digunakan untuk merubah style single element yang telah diberi id oleh kita sebagai developer yang dapat dilakukan dengan #id{}
+
+Class selector
+Tak berbeda jauh dengan Id selector, Class selector juga digunakan untuk merubah banyak element yang telah diberi class oleh developer yang dapat diedit dengan .nama_class{}
+
+## Step by Step Explanation
+
+Menambahkan potongan kode berikut pada base.html untuk menginstal bootstrap pada file html kita.
+
+```shell
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+```
+```shell
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+```
+
+Mengedit dan menghias CSS sesuai keinginan kita dan menggunakan Media Query agar web menjadi responsive
+
+
 
 ## Heroku Deployment
 

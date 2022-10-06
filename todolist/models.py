@@ -8,3 +8,5 @@ class Task(models.Model):
     title = models.TextField()
     description = models.TextField()
     is_finished = models.TextField()
+    image_url = models.URLField(default="https://cdn.discordapp.com/attachments/1027273502060982372/1027407971828908032/ToDoicon.png")
+

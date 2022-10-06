@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+import random;
 import datetime
 from todolist.models import Task
 # Create your views here.
@@ -12,10 +13,25 @@ from todolist.models import Task
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
     data_todolist = Task.objects.filter(user=request.user)
+    img_title = ""
+    a = random.randrange(2)
+    for data in data_todolist:
+        if data.is_finished == "Selesai":
+            data.image_url = "https://cdn.discordapp.com/attachments/1027273502060982372/1027407972189605918/completeicon.png"
+        else:
+            data.image_url = "https://cdn.discordapp.com/attachments/1027273502060982372/1027407971828908032/ToDoicon.png"
+    if a == 1:
+        img_title = "https://cdn.discordapp.com/attachments/1027273502060982372/1027415564823576638/undraw_Push_notifications_re_t84m.png"
+    elif a == 2:
+        img_title = "https://cdn.discordapp.com/attachments/1027273502060982372/1027415565188485151/undraw_Problem_solving_re_4gq3.png"
+    else:
+        img_title = "https://cdn.discordapp.com/attachments/1027273502060982372/1027415565511430154/undraw_Feedback_re_urmj.png"
+
     context = {
     'data_tasks': data_todolist,
     'username' : request.user,
     'last_login': request.COOKIES['last_login'],
+    'img_title' : img_title,
     }
     return render(request, "todolist.html",context)
 

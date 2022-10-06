@@ -6,20 +6,10 @@
         font-family: Helvetica;
     }
 
-    table{
-        box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);
-        width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     button{
         border-radius: 5px;
         border: none;
         text-decoration: none;
-        min-height: 20px;
-        min-width: 50px;
-        font-size: 10px;
         box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);
     }
     a{
@@ -51,52 +41,249 @@
         background-color: #E33437;
     }
 
+    .card{
+        width: 12.5rem;
+        height: 20rem;
+
+        margin: 2%;
+        position: relative;
+    }
+
+    .cardposition{
+        position: absolute;
+        box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);
+        border-radius: 5px;
+        width: 80%;
+        height: 70%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2%;
+    }
+
+    .cardcontainer{
+        height: 80%;
+        width: 80%;
+        position:absolute;
+        border: solid yellow 2px;
+    }
+
+    .judul-web{
+        color: white;
+    }
+
+    .welmessage{
+        color: white;
+    }
+    .centerposition{
+        height: 800px;
+        border: solid red 2px;
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2%;
+    }
+
+    .row{
+        overflow-y: auto;
+        white-space: nowrap;
+        top:60%;
+    }
+
+    .col-xs-4{
+        display: inline-block;
+
+    }
+
     #userprofile{
         font-size: 25px;
         font-weight: 400;
         height: 15px;
+        margin-bottom: 30px;
     }
 
+    .logout-button{
+        font-size: 10px; 
+        height:30px; 
+        width:70px;
+    }
+
+    .delete-position{
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        transform: translate(-50%, -50%);
+    }
+    .add-position{
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 95%;
+        transform: translate(-50%, -50%);
+    }
+    .change-position{
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        top: 88%;
+        transform: translate(-50%, -50%);
+    }
+    .finished-position{
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        left: 50%;
+        top: 76%;
+        transform: translate(-50%, -50%);
+    }
+
+    h1{
+        padding-top:7% ;
+        padding-left:12%;
+        font-size: 2.5rem;
+    }
+    .card-title{
+        font-size: 120%;
+    }
+
+    .card-text{
+        font-size: 80%;
+    }
+
+
+     @media screen and (max-width: 820px){
+        .card{
+        width: 28%; 
+        height: 35%;
+        margin: 2%;
+        position: relative;
+        }
+        .row{
+            top:50%;
+        }
+        h1{
+            padding-top: 12%;
+        }
+    } 
+    
+
+    
+    
+    @media screen and (max-width: 420px){
+        h1{
+            padding-top: 20%;
+        }
+        .add-position{
+            top: 86%;
+            left:48%;
+        }
+        .card{
+            width: 45%;
+            height: 35%; 
+            margin: 2.5%;
+            position: relative;
+        }
+        .navbar-brand{
+            width: 20%;
+        }
+        .logo-dito{
+            width: 20%;
+            height: 20%;
+        }
+        .judul-web{
+            font-size: 70%;
+            letter-spacing: -2%;
+        }
+        .foto-profil{
+            padding-top: 5%;
+            width: 30%;
+            height: 30%;
+        }
+        .welmessage{
+            font-size: 50%;
+            letter-spacing: -2%;
+        }
+        .logout-button{
+            font-size: 10px;
+            text-align: center;
+            width: 60px;
+            height: 25px;
+            
+        }
+        .d-flex{
+            width: 40%;
+            padding-left: 30px;
+        }
+        .centerposition{
+            top:65%;
+        }
+    }
+    
+    @media screen and (max-height: 668px) and (max-width:376px){
+        .row{
+          top:60%
+        }
+        .card{
+            height: 50%;
+        }
+        .add-position{
+            top: 96%;
+            left:48%;
+        }
+    }
+
+
+
+
 </style>
+<nav class="navbar bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img class="logo-dito"src="https://cdn.discordapp.com/attachments/1027273502060982372/1027276315386187847/icondito.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        <span class="judul-web">Task Management System</span>
+      </a>
+      <div class="d-flex">
+        <img class="foto-profil" src="https://cdn.discordapp.com/attachments/1027273502060982372/1027273664200200272/profile.png" style="max-width: 60px; max-height: 60px;">
+        <div class="container text-right salam">
+            <div class="row">
+                <span class="welmessage">Welcome, {{username}}!</span>
+            </div>
+            <div class="row" style="padding-left:10px;">
+                <a class="btn btn-danger float-right logout-button" href="{% url 'todolist:logout'%}" >Logout</a>
+            </div>
+            <div class="row" style="padding-left:10px;">
 
-<div style="text-align: right;">
-    <p id="userprofile">Welcome, {{username}}! </p>
-    <button class = "redbutton" style="font-size:15px; height:30px; width:100px"><a href="{% url 'todolist:logout' %}">Logout</a></button>
-    
-</div>
-<p id="header_utama" style="padding-left: 20px;">📃Tasks Management</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<div style="padding-top:20px;">
-    <table>
-        <tr>
-        <th class = "judul">Title</th>
-        <th class = "judul">Description</th>
-        <th class = "judul">Date Added</th>
-        <th class = "judul">Status</th>
-        <th class = "judul">Change</th>
-        <th class = "judul">Delete</th>
+<div>
+      <h1>📃My Task</h1>
+          <div class ="row cardposition bg-light">
+              {% for todo in data_tasks %}
+            <div class="card col-xs-4" style="box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);">
+                <img class="card-img-top" style="border-radius: 10px;" src="{{img_title}}"" alt="Card image cap">
+                <div class="card-body">
+                    <span class="card-title" >{{todo.title}}</span>
+                    <p class="card-text" style="height: 4px;">({{todo.date}})</p>
+                    <p class="card-text" >{{todo.description}}</p>
+                    <span class="card-text finished-position" style="font-size: 10px;">{{todo.is_finished}}</span>
+                    <a href="{% url 'todolist:change_status' todo.id %}" class="btn btn-primary change-position" style="width: 80px; font-size: 8px;">Change Status</a>
+                    <a href="{% url 'todolist:delete_task' todo.id %}" class="btn btn-danger delete-position" style="width: 35px; font-size: 10px;">X</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="{% url 'todolist:add_task'%}" class="btn btn-success add-position" style="width: 45px; font-size: 15px;">+</a>
     
-        </tr>
-        {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-        {% for todo in data_tasks %}
-            <tr>
-                <th class = "data" style="width: 20%;">{{todo.title}}</th>
-                <th class = "data" style="width: 25%;">{{todo.description}}</th>
-                <th class = "data" style="width: 15%;">{{todo.date}}</th>
-                <th class = "data" style="width: 15%;">{{todo.is_finished}}</th>
-                <th class = "data" style="width: 15%;"><button class="greenbutton"><a href="{% url 'todolist:change_status' todo.id %}">Switch</a></button></th>
-                <th class = "data" style="width: 10%;"><button class = "redbutton" style="min-width: 25px"><a href="{% url 'todolist:delete_task' todo.id %}">X</a></button></th>
-    
-            </tr>
-        {% endfor %}
-    </table>
-    
-</div>
-
-<div style="padding-top: 10px; text-align: center;">
+<!-- <div style="padding-top: 10px; text-align: center;">
     <button class="bluebutton" style="width: 100px;"><a href="{% url 'todolist:add_task' %}">Add New Task</a></button>
-
-</div>
-<h5 id="identity">Sesi terakhir login: {{ last_login }}</h5>
+</div> -->
 
 {% endblock content %}
