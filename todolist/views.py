@@ -1,4 +1,5 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.core import serializers
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
@@ -8,18 +9,13 @@ from django.urls import reverse
 import random;
 import datetime
 from todolist.models import Task
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data_todolist = Task.objects.filter(user=request.user)
     img_title = ""
     a = random.randrange(2)
-    for data in data_todolist:
-        if data.is_finished == "Selesai":
-            data.image_url = "https://cdn.discordapp.com/attachments/1027273502060982372/1027407972189605918/completeicon.png"
-        else:
-            data.image_url = "https://cdn.discordapp.com/attachments/1027273502060982372/1027407971828908032/ToDoicon.png"
     if a == 1:
         img_title = "https://cdn.discordapp.com/attachments/1027273502060982372/1027415564823576638/undraw_Push_notifications_re_t84m.png"
     elif a == 2:
@@ -28,18 +24,22 @@ def show_todolist(request):
         img_title = "https://cdn.discordapp.com/attachments/1027273502060982372/1027415565511430154/undraw_Feedback_re_urmj.png"
 
     context = {
-    'data_tasks': data_todolist,
     'username' : request.user,
     'last_login': request.COOKIES['last_login'],
     'img_title' : img_title,
     }
     return render(request, "todolist.html",context)
 
-    
-def delete_task(request,id):
-    Task.objects.filter(pk=id).delete()
-    return redirect('todolist:show_todolist')
 
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
+def delete_task(request,id):
+    if request.method == 'DELETE':
+        Task.objects.filter(pk=id).delete()
+        return HttpResponse(status=202)
+
+
+@login_required(login_url='/todolist/login/')
 def change_status(request,id):
     status_change = Task.objects.filter(pk=id).get()
     if status_change.is_finished == "Belum Selesai":
@@ -82,6 +82,12 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+@login_required(login_url='/todolist/login/')
+def show_json(request):
+    data = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json",data), content_type="application/json")
+
+@login_required(login_url='/todolist/login/')
 def add_task(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -100,4 +106,23 @@ def add_task(request):
 
             
     return render(request, "add_task.html")
+
+@login_required(login_url='/todolist/login/')
+@csrf_exempt
+def add_task_ajax(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        new_task = Task.objects.create(title = title, description = description, date = datetime.date.today(), user=request.user, is_finished="Belum Selesai")
+        new_task = {
+            'pk' : new_task.pk,
+            'fields':{
+                'title':new_task.title,
+                'description':new_task.description,
+                'date':new_task.date,
+                'is_finished':new_task.is_finished
+
+            }
+        }
+        return JsonResponse(new_task);
 
