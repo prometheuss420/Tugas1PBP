@@ -340,7 +340,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Task</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -348,12 +348,12 @@
                 {% csrf_token %}
                 <table>
                     <tr>
-                        <td>Judul: </td>
+                        <td>Title: </td>
                         <td><input type="text" name="title" placeholder="Title.." class="form-control" id="title"></td>
                     </tr>
                             
                     <tr>
-                        <td>Deskripsi: </td>
+                        <td>Description: </td>
                         <td><input type="text" name="description" placeholder="Description.." class="form-control" id="description"></td>
                     </tr>
                 </table>

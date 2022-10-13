@@ -299,6 +299,163 @@ Menambahkan potongan kode berikut pada base.html untuk menginstal bootstrap pada
 
 Mengedit dan menghias CSS sesuai keinginan kita dan menggunakan Media Query agar web menjadi responsive
 
+# Tugas 6
+
+## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+Asynchronous programming merupakan jenis program yang dapat berjalan secara multithread atau menjalankan beberapa tugas dalam satu waktu secara bersamaan. Sedangkan Synchronus programming merupakan jenis program yang hanya dapat berjalan secara singlethread atau hanya dapat menjalankan satu tugas dalam satu waktu saja (sequential)
+
+## Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma Event-Driven Programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Paradigma Event-Driven Programming adalah sebuah paradigma program yang berjalan sesuai event (tindakan) yang dilakukan oleh user ke program. Dimana setelah user memberikan event, program akan menjalankan rangkaian eksekusi yang telah di inisiasikan sebelumnya. Pada tugas ini, contoh penerapannya terdapat pada saat user menekan button add new task dan menambahkan task baru yang akan ditampilkan di page utama.
+
+## Jelaskan penerapan asynchronous programming pada AJAX.
+
+Penerapannya pada AJAX dapat dilihat ketika user tidak perlu melakukan reload halaman ketika terdapat request by event yang dilakukan oleh user. Pada tugas ini, contoh penerapannya terdapat pada saat user menekan button add new task dan menambahkan task baru yang akan ditampilkan di page utama tanpa di reload.
+
+## Step by Step Explanation
+
+Menambahkan method show_json di views dan melakukan routing ke /todolist/json yang akan digunakan ketika melakukan AJAX GET. Methodnya adalah sebagai berikut.
+
+```shell
+def show_json(request):
+    data = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json",data), content_type="application/json")
+```
+Menambahkan potongan kode AJAX Get berikut pada HTML untuk menampilkan data JSON yang telah ada sebelumnya.
+
+```shell
+$.get("/todolist/json/", function(tasks) {
+            console.log(tasks);
+            for (i = 0; i < tasks.length; i++){
+                background_color = "#d9534f";
+                if (tasks[i].fields.is_finished == "Selesai"){
+                    background_color = "#5cb85c"
+                }
+                $(".task").append(`<div class="card col-xs-4" style="box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);">
+                <img class="card-img-top" style="border-radius: 10px;" src="{{img_title}}"" alt="Card image cap">
+                <div class="card-body">
+                    <span class="card-title" >${tasks[i].fields.title}</span>
+                    <p class="card-text" style="height: 0.05rem;">(${tasks[i].fields.date})</p>
+                    <p class="card-text" >${tasks[i].fields.description}</p>
+                    <span class="card-text finished-position" style="background-color:${background_color}; box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);">${tasks[i].fields.is_finished}</span>
+                    <a href="/todolist/change-status/${tasks[i].pk}" class="btn btn-primary change-position" >Change Status</a>
+                    <a class="btn btn-danger delete-position" onclick="delete_task(${tasks[i].pk})">X</a>
+
+                </div>
+            </div>`)
+                
+            }
+        });
+```
+
+Membuat method views baru dan melakukan routing pada /todolist/add untuk menambahkan data dengan AJAX POST.
+
+```shell
+@csrf_exempt
+def add_task_ajax(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        new_task = Task.objects.create(title = title, description = description, date = datetime.date.today(), user=request.user, is_finished="Belum Selesai")
+        new_task = {
+            'pk' : new_task.pk,
+            'fields':{
+                'title':new_task.title,
+                'description':new_task.description,
+                'date':new_task.date,
+                'is_finished':new_task.is_finished
+
+            }
+        }
+        return JsonResponse(new_task);
+```
+
+Menambahkan modal baru beserta buttonnya untuk menampilkan popup form terkait data baru yang akan dimasukkan
+```shell
+<!-- Button trigger modal -->
+<button type="button" style="width:50%;" class="btn btn-success add-position" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add New Task
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Task</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>Title: </td>
+                        <td><input type="text" name="title" placeholder="Title.." class="form-control" id="title"></td>
+                    </tr>
+                            
+                    <tr>
+                        <td>Description: </td>
+                        <td><input type="text" name="description" placeholder="Description.." class="form-control" id="description"></td>
+                    </tr>
+                </table>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="submit" data-bs-dismiss="modal" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+```
+
+Menambahkan potongan kode AJAX POST berikut untuk memproses data dan menampilkannya tanpa melakukan reload page
+
+```shell
+$("#submit").click(function(){
+          $.post("/todolist/add/", {
+            title : $('#title').val(),
+            description: $('#description').val()},
+            function(new_task) {
+            console.log(new_task);
+            background_color = "#d9534f";
+            if (new_task.fields.is_finished == "Selesai"){
+                background_color = "#5cb85c"
+            }
+            $(".task").append(`<div class="card col-xs-4" style="box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);">
+            <img class="card-img-top" style="border-radius: 10px;" src="{{img_title}}"" alt="Card image cap">
+            <div class="card-body">
+                <span class="card-title" >${new_task.fields.title}</span>
+                <p class="card-text" style="height: 0.05rem;">(${new_task.fields.date})</p>
+                <p class="card-text" >${new_task.fields.description}</p>
+                <span class="card-text finished-position" style="background-color:${background_color}; box-shadow: 0px 3px 2px rgb(0 0 0/ 0.2);">${new_task.fields.is_finished}</span>
+                <a href="/todolist/change-status/${new_task.pk}" class="btn btn-primary change-position" style="width: 80px; font-size: 8px;">Change Status</a>
+                <a class="btn btn-danger delete-position" onclick="delete_task(${new_task.pk})" style="width: 80px; font-size: 8px;">X</a>
+
+            </div>
+        </div>`)
+                
+        }
+            )
+          })
+
+        delete_task = (id_task) => {
+        $.ajax({
+          url: `/todolist/delete-task/${id_task}`,
+          type: 'DELETE',
+          success: function(response){
+            $(`#${id_task}--task`).remove()
+            window.location.reload()
+          }
+        })
+      }
+    }); 
+```
+
+
+
 
 
 ## Heroku Deployment
